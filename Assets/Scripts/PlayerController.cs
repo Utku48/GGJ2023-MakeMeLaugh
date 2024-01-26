@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public float speed = 5f;
     public float sensitivity = 2f;
+    public float jumpForce = 5f;
+    public float gravity = 14f;
+    public LayerMask groundMask;
 
     private CharacterController characterController;
     private Camera playerCamera;
-
     private float verticalRotation = 0f;
+    private bool isGrounded;
+    private Vector3 velocity;
 
     void Start()
     {
@@ -21,24 +25,63 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        // Player movement
+        // Check if the player is grounded
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + 0.1f, groundMask);
+
+        // Handle player movement
+        HandleMovement();
+
+        // Handle jumping
+        HandleJump();
+
+        // Handle player rotation
+        HandleRotation();
+
+        // Lock and unlock cursor
+        HandleCursorLock();
+    }
+
+    void HandleMovement()
+    {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
-        // Player rotation
+        // Apply gravity to the velocity
+        if (!characterController.isGrounded)
+        {
+            velocity.y -= gravity * Time.deltaTime;
+        }
+
+        // Move the character based on the velocity
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
+    void HandleJump()
+    {
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            // Reset y-velocity to prevent floating
+            velocity.y = Mathf.Sqrt(2f * jumpForce * gravity);
+        }
+    }
+
+    void HandleRotation()
+    {
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -75f, 90f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
 
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
 
-        // Lock and unlock cursor
+    void HandleCursorLock()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
