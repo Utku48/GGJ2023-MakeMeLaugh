@@ -1,8 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     public float speed = 5f;
     public float sensitivity = 2f;
     public float jumpForce = 5f;
@@ -15,6 +18,19 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded;
     private Vector3 velocity;
 
+    public static PlayerController Instance { get; private set; }
+    private void Awake()
+    {
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -93,5 +109,20 @@ public class PlayerController : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+    #region Çarpışmalar
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            PlayerController.Instance.Die();
+        }
+    }
+
+        #endregion
+
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
