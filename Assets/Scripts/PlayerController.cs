@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 velocity;
 
+    [SerializeField] private ParticleSystem _dust;
     public static PlayerController Instance { get; private set; }
     private void Awake()
     {
