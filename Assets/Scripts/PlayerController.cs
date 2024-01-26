@@ -56,6 +56,28 @@ public class PlayerController : MonoBehaviour
 
         // Lock and unlock cursor
         HandleCursorLock();
+
+        //handle interaction
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryInteract();
+        }
+    }
+    private void TryInteract()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        // Cast a ray forward from the player's position
+        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        {
+            // Check if the hit object has an IInteractable component
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+            // If it does, call the Interact method
+            if (interactable != null)
+            {
+                interactable.interact();
+            }
+        }
     }
 
     void HandleMovement()
