@@ -154,7 +154,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.54
+  weight: 0.3
   sharedProfile: {fileID: 11400000, guid: 76826446d9593ec4b82fdadbaced3500, type: 2}
 --- !u!1 &1501633228835840079
 GameObject:
@@ -190,7 +190,7 @@ Transform:
   m_Children:
   - {fileID: 7595680798574914717}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3334966173077664403
 CapsuleCollider:

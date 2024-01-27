@@ -19,8 +19,8 @@ public class SupriseBox : MonoBehaviour, Interactable
         {
 
             tokmak = true;
-            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), .5f);
-            _tokmakDoorAnim.SetBool("tokmak", true);
+            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), 1.5f);
+            _tokmakDoorAnim.SetBool("sallan", true);
             StartCoroutine(tokmakAnim());
 
 
@@ -62,8 +62,8 @@ public class SupriseBox : MonoBehaviour, Interactable
 
     IEnumerator tokmakAnim()
     {
-        yield return new WaitForSeconds(1f);
-
+        yield return new WaitForSeconds(2f);
+        _tokmakDoorAnim.SetBool("tokmak", true);
     }
 
 }
