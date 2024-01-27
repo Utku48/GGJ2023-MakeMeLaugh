@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public float gravity = 14f;
     public LayerMask groundMask;
     public bool isReversed;
+    public Animator handAnimator;
 
+    private bool isHandUp = false;
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
@@ -64,7 +66,21 @@ public class PlayerController : MonoBehaviour
         {
             TryInteract();
         }
-        
+        //Handle anim
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!isHandUp)
+            {
+                handAnimator.SetBool("handRaise", true);
+                isHandUp = true;
+            }
+                
+            else
+            {
+                handAnimator.SetBool("handRaise", false);
+                isHandUp = false;
+            }
+        }
     }
     private void TryInteract()
     {
