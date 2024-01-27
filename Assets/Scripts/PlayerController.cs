@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,14 +12,18 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f;
     public float gravity = 14f;
     public LayerMask groundMask;
+    public bool isReversed;
 
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
     private bool isGrounded;
     private Vector3 velocity;
+    private Vector3 moveDirection;
 
-    [SerializeField] private ParticleSystem _dust;
+    public int _checkPoint = 0;
+    [SerializeField] private Vector3 _startPos;
+
     public static PlayerController Instance { get; private set; }
     private void Awake()
     {
@@ -34,6 +39,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        _startPos = gameObject.transform.position;
+
         characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + 0.1f, groundMask);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
 
         // Handle player movement
         HandleMovement();
@@ -56,6 +63,28 @@ public class PlayerController : MonoBehaviour
 
         // Lock and unlock cursor
         HandleCursorLock();
+
+        //handle interaction
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryInteract();
+        }
+    }
+    private void TryInteract()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        {
+
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+
+            if (interactable != null)
+            {
+                interactable.interact();
+            }
+        }
     }
 
     void HandleMovement()
@@ -63,16 +92,20 @@ public class PlayerController : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+
+        //if (!isReversed)
+        moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+        //else
+        //    moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
-        // Apply gravity to the velocity
+
         if (!characterController.isGrounded)
         {
             velocity.y -= gravity * Time.deltaTime;
         }
 
-        // Move the character based on the velocity
+
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -80,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            // Reset y-velocity to prevent floating
+
             velocity.y = Mathf.Sqrt(2f * jumpForce * gravity);
         }
     }
@@ -114,16 +147,18 @@ public class PlayerController : MonoBehaviour
     #region Çarpışmalar
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            PlayerController.Instance.Die();
-        }
+
+
+
     }
 
-        #endregion
+    #endregion
 
     public void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (_checkPoint == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
