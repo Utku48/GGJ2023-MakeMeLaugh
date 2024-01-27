@@ -13,7 +13,8 @@ public class Door : MonoBehaviour, Interactable
         Sequence mySequence = DOTween.Sequence();
         if (!isOpen)
         {
-            mySequence.Append(transform.DORotate(new Vector3(0, 90, 0), 1f));
+
+            mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 1f,RotateMode.LocalAxisAdd));
             isOpen=true;
             if (isTrapDoor)
             {
@@ -22,7 +23,8 @@ public class Door : MonoBehaviour, Interactable
         }
         else
         {
-            mySequence.Append(transform.DORotate(new Vector3(0, 0, 0), 1f));
+
+            mySequence.Append(transform.DOLocalRotate(new Vector3(0, -90 , 0), 1f, RotateMode.LocalAxisAdd) );
             isOpen = false;
         }
         mySequence.Play();

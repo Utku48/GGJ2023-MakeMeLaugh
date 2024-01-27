@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + 0.1f, groundMask);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
 
         // Handle player movement
         HandleMovement();
