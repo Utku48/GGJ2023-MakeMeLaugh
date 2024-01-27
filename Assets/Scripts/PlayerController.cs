@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
             {
                 handAnimator.SetBool("handRaise", true);
                 isHandUp = true;
+                AudioSourceManager.Instance._sounds[4].Play();
             }
             else
             {
@@ -162,7 +163,7 @@ public class PlayerController : MonoBehaviour
     #region Çarpışmalar
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("trap"))
+        if (other.gameObject.CompareTag("trap") || other.gameObject.CompareTag("yumruk"))
         {
             Debug.Log("die to trap");
             Die();
@@ -176,8 +177,8 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         DOTween.Clear(true);
-        
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      
     }
 }
