@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8618758514108532060}
   m_Layer: 0
   m_Name: "kap\u0131"
-  m_TagString: Untagged
+  m_TagString: ironDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8821dc181a6489c428149965e817e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iron: 0
+  tokmak: 0
   _dust: {fileID: 0}
+  _tokmakDoorAnim: {fileID: 0}
+  _tokmakDoor: {fileID: 0}
+  _ironDoor: {fileID: 0}
 --- !u!65 &8618758514108532060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -200,8 +205,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000624, y: 0.7738706, z: 0.024873102}
-  m_Center: {x: 0.0000031656878, y: -0.25249633, z: 0.0012127572}
+  m_Size: {x: 0.036546245, y: 0.7738706, z: 0.024873102}
+  m_Center: {x: -0.008269503, y: -0.2524963, z: 0.0012127577}
 --- !u!1 &8340296728584061065
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,9 +216,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288041052281682871}
+  - component: {fileID: 1690581075967370403}
   m_Layer: 0
   m_Name: PortcullisNew
-  m_TagString: Untagged
+  m_TagString: ironDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,3 +241,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 2.336, y: -236.20099, z: 0.954}
+--- !u!114 &1690581075967370403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340296728584061065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8821dc181a6489c428149965e817e203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iron: 0
+  tokmak: 0
+  _dust: {fileID: 0}
+  _tokmakDoorAnim: {fileID: 0}
+  _tokmakDoor: {fileID: 0}
+  _ironDoor: {fileID: 0}
