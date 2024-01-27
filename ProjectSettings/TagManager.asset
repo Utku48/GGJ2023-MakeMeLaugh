@@ -7,7 +7,6 @@ TagManager:
   - Wall
   - ground
   - diken
-  - x
   layers:
   - Default
   - TransparentFX
