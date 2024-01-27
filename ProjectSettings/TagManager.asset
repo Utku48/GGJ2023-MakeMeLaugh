@@ -10,6 +10,9 @@ TagManager:
   - trap
   - x
   - tokmakDoor
+  - ironDoor
+  - leftIronDoor
+  - yumruk
   layers:
   - Default
   - TransparentFX
