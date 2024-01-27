@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4085418938476925533}
   - component: {fileID: 254356247529803614}
   - component: {fileID: 6090730377997516108}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BrokeBrick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4244940143861235719}
   m_LocalRotation: {x: -0.6799676, y: 0.19402105, z: 0.19402105, w: 0.6799676}
   m_LocalPosition: {x: 20.139, y: -0.376, z: -12.465}
-  m_LocalScale: {x: 300, y: 300, z: 300.00003}
+  m_LocalScale: {x: 342.41998, y: 342.41998, z: 342.42004}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6193717357822635477}

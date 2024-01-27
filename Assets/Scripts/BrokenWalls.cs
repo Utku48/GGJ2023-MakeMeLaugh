@@ -13,6 +13,7 @@ public class BrokenWalls : MonoBehaviour
         {
             Debug.Log("Sa");
             RotateContinuously();
+         
         }
 
     }
@@ -33,5 +34,6 @@ public class BrokenWalls : MonoBehaviour
         _brokenWall.transform.DOMove(Vector3.zero, .1f);
         _brokenWall.transform.DOScale(Vector3.zero, .1f);
     }
+
 }
 
