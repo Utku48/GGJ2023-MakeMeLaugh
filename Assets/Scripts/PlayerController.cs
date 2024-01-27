@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isReversed;
     public Animator handAnimator;
+    public LayerMask trapLayer;
 
     private bool isHandUp;
     private CharacterController characterController;
@@ -23,7 +24,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 moveDirection;
 
-    public int _checkPoint = 0;
     [SerializeField] private Vector3 _startPos;
 
     public static PlayerController Instance { get; private set; }
@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 3f))
         {
-
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
 
@@ -163,7 +162,11 @@ public class PlayerController : MonoBehaviour
     #region Çarpışmalar
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.CompareTag("trap"))
+        {
+            Debug.Log("die to trap");
+            Die();
+        }
 
 
     }
@@ -172,9 +175,9 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        if (_checkPoint == 0)
-        {
+        DOTween.Clear(true);
+        
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        
     }
 }

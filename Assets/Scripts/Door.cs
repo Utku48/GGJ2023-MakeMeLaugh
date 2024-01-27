@@ -10,19 +10,25 @@ public class Door : MonoBehaviour, Interactable
     [SerializeField] private GameObject TrapWall;
     [SerializeField] private AudioSource _OpenDoorCreak;
     [SerializeField] private AudioSource _CloseDoorCreak;
+    [SerializeField] private Vector3 trapDoorPos;
     public void interact()
     {
         Sequence mySequence = DOTween.Sequence();
         if (!isOpen)
         {
 
-            mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 4f, RotateMode.LocalAxisAdd));
+            
             isOpen = true;
             _OpenDoorCreak.Play();
 
             if (isTrapDoor)
             {
-                mySequence.Append(TrapWall.transform.DOLocalMove(new Vector3(TrapWall.transform.localPosition.x, TrapWall.transform.localPosition.y, TrapWall.transform.localPosition.z - 2), .5f));
+                mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 1f, RotateMode.LocalAxisAdd));
+                mySequence.Append(TrapWall.transform.DOLocalMove(trapDoorPos, .5f));
+            }
+            else
+            {
+                mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 3f, RotateMode.LocalAxisAdd));
             }
         }
         else
