@@ -19,10 +19,11 @@ public class SupriseBox : MonoBehaviour, Interactable
         {
 
             tokmak = true;
-            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), 1.5f);
+            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), 5f);
             _tokmakDoorAnim.SetBool("sallan", true);
             StartCoroutine(tokmakAnim());
 
+            AudioSourceManager.Instance._sounds[6].Play();
 
         }
 
@@ -30,21 +31,23 @@ public class SupriseBox : MonoBehaviour, Interactable
         {
             gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 3.5f);
             StartCoroutine(dustPlay());
+            AudioSourceManager.Instance._sounds[6].Play();
 
         }
 
         if (gameObject.CompareTag("ironDoor"))
         {
             iron = true;
-            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 2.5f);
-            Debug.Log("iron" + iron);
+            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 3f);
+            AudioSourceManager.Instance._sounds[5].Play();
         }
 
         if (gameObject.CompareTag("leftIronDoor"))
         {
             if (_tokmakDoor.GetComponent<SupriseBox>().tokmak && _ironDoor.transform.GetChild(0).GetComponent<SupriseBox>().iron)
             {
-                gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 2.5f);
+                gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 3.5f);
+                AudioSourceManager.Instance._sounds[5].Play();
 
             }
         }
