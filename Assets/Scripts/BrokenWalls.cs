@@ -20,9 +20,9 @@ public class BrokenWalls : MonoBehaviour
     void RotateContinuously()
     {
 
-        _brokenWall.transform.DORotate(new Vector3(0f, 0f, 40f), 1.5f)
+        _brokenWall.transform.DORotate(new Vector3(-100f, 0f, 30f), 1.5f)
             .SetEase(Ease.Linear)
-            .OnComplete(() => _brokenWall.transform.DORotate(new Vector3(0f, 0f, -40f), 1.5f));
+            .OnComplete(() => _brokenWall.transform.DORotate(new Vector3(-550f, 0f, 30f), 1.5f));
         StartCoroutine(BrokeBrick());
     }
 

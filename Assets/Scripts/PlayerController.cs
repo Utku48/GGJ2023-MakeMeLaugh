@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
-    private bool isGrounded;
+    public bool isGrounded;
     private Vector3 velocity;
     private Vector3 moveDirection;
 
@@ -44,22 +44,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
 
-        // Handle player movement
+        //isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
+
+
         HandleMovement();
-
-        // Handle jumping
         HandleJump();
-
-        // Handle player rotation
         HandleRotation();
-
-        // Lock and unlock cursor
         HandleCursorLock();
 
-        //handle interaction
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
@@ -68,13 +62,13 @@ public class PlayerController : MonoBehaviour
     private void TryInteract()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        // Cast a ray forward from the player's position
+
         if (Physics.Raycast(ray, out RaycastHit hit, 3f))
         {
-            // Check if the hit object has an IInteractable component
+
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
-            // If it does, call the Interact method
+
             if (interactable != null)
             {
                 interactable.interact();
@@ -88,19 +82,19 @@ public class PlayerController : MonoBehaviour
         float verticalMove = Input.GetAxis("Vertical");
 
 
-        if(!isReversed)
-            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f,verticalMove));
-        else
-            moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
+        //if (!isReversed)
+        moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+        //else
+        //    moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
-        // Apply gravity to the velocity
+
         if (!characterController.isGrounded)
         {
             velocity.y -= gravity * Time.deltaTime;
         }
 
-        // Move the character based on the velocity
+
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -108,7 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            // Reset y-velocity to prevent floating
+
             velocity.y = Mathf.Sqrt(2f * jumpForce * gravity);
         }
     }
@@ -148,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-        #endregion
+    #endregion
 
     public void Die()
     {
