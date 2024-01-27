@@ -1,18 +1,20 @@
-﻿using DG.Tweening;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     public float speed = 5f;
     public float sensitivity = 2f;
     public float jumpForce = 5f;
     public float gravity = 14f;
     public LayerMask groundMask;
     public bool isReversed;
+    public Animator handAnimator;
 
+    private bool isHandUp = false;
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
@@ -20,9 +22,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 velocity;
     private Vector3 moveDirection;
 
-    public int _checkPoint = 0;
-    [SerializeField] private Vector3 _startPos;
-
+    [SerializeField] private ParticleSystem _dust;
     public static PlayerController Instance { get; private set; }
     private void Awake()
     {
@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour {
     }
     void Start()
     {
-        _startPos = gameObject.transform.position;
-
         characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -68,17 +66,32 @@ public class PlayerController : MonoBehaviour {
         {
             TryInteract();
         }
+        //Handle anim
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!isHandUp)
+            {
+                handAnimator.SetBool("handRaise", true);
+                isHandUp = true;
+            }
+                
+            else
+            {
+                handAnimator.SetBool("handRaise", false);
+                isHandUp = false;
+            }
+        }
     }
     private void TryInteract()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-
+        // Cast a ray forward from the player's position
         if (Physics.Raycast(ray, out RaycastHit hit, 3f))
         {
-
+            // Check if the hit object has an IInteractable component
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
-
+            // If it does, call the Interact method
             if (interactable != null)
             {
                 interactable.interact();
@@ -92,19 +105,19 @@ public class PlayerController : MonoBehaviour {
         float verticalMove = Input.GetAxis("Vertical");
 
 
-        //if (!isReversed)
-        moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
-        //else
-        //    moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
+        if(!isReversed)
+            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f,verticalMove));
+        else
+            moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
-
+        // Apply gravity to the velocity
         if (!characterController.isGrounded)
         {
             velocity.y -= gravity * Time.deltaTime;
         }
 
-
+        // Move the character based on the velocity
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -112,7 +125,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-
+            // Reset y-velocity to prevent floating
             velocity.y = Mathf.Sqrt(2f * jumpForce * gravity);
         }
     }
@@ -146,18 +159,16 @@ public class PlayerController : MonoBehaviour {
     #region Çarpışmalar
     private void OnTriggerEnter(Collider other)
     {
-
-
-
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            PlayerController.Instance.Die();
+        }
     }
 
-    #endregion
+        #endregion
 
     public void Die()
     {
-        if (_checkPoint == 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
