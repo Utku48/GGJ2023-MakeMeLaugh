@@ -641,7 +641,7 @@ Transform:
   - {fileID: 8648219868823659729}
   - {fileID: 112831372961896727}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -0.409, y: 0, z: 0}
 --- !u!82 &5468431812506008209
 AudioSource:
