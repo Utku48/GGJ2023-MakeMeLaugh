@@ -9,6 +9,7 @@ public class Killer : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>())
         {
             PlayerController.Instance.Die();
+            Debug.Log("fuck");
         }
     }
 }
