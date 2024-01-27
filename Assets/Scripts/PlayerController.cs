@@ -89,9 +89,9 @@ public class PlayerController : MonoBehaviour
 
 
         if(!isReversed)
-            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f,verticalMove));
         else
-            moveDirection = transform.TransformDirection(new Vector3(verticalMove , 0f, horizontalMove));
+            moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
         // Apply gravity to the velocity

@@ -3,7 +3,27 @@ guid: 71332819bc60f344bacb70efcf4a8e71
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks075
+    second: {fileID: 2100000, guid: 40c6c897df4e3124ca0ecfd8c5d90170, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrate042
+    second: {fileID: 2100000, guid: 5d1f3623914f2c24f90a91dabcf0d11b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 97c6d0746182b5d4588a893d5b1b065d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tahta
+    second: {fileID: 2100000, guid: 0954fd9b8bf68ad43bcd6270f2e1db2f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
