@@ -467,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.70368594, b: 0.4292453, a: 1}
   m_Intensity: 4.54
-  m_Range: 26.71
+  m_Range: 9.9
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -611,7 +611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441740568}
   m_LocalRotation: {x: -0.0405764, y: -0.9449395, z: 0.12865135, w: -0.2981473}
-  m_LocalPosition: {x: 7.48, y: 3.92, z: 15.56}
+  m_LocalPosition: {x: 7.524, y: 4.199, z: 15.496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -700,6 +700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main_Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238467985026089644, guid: 7c33f7e098a11444bae728b022f5f876,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.569
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
