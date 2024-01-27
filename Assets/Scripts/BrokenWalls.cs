@@ -28,7 +28,7 @@ public class BrokenWalls : MonoBehaviour
 
     IEnumerator BrokeBrick()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2.5f);
 
         _brokenWall.transform.DOMove(Vector3.zero, .1f);
         _brokenWall.transform.DOScale(Vector3.zero, .1f);
