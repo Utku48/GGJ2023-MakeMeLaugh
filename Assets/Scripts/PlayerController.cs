@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     public float gravity = 14f;
     public LayerMask groundMask;
     public bool isReversed;
+    public Animator handAnimator;
 
+    private bool isHandUp;
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .7f, groundMask);
 
         // Handle player movement
         HandleMovement();
@@ -68,6 +70,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
+        }
+        //handle anim
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!isHandUp)
+            {
+                handAnimator.SetBool("handRaise", true);
+                isHandUp = true;
+            }
+            else
+            {
+                handAnimator.SetBool("handRaise", false);
+                isHandUp = false;
+            }
         }
     }
     private void TryInteract()
