@@ -10,7 +10,7 @@ public class RandomSoundPlayer : MonoBehaviour
     void Start()
     {
         _gameSound.Play();
-        StartCoroutine(UpdateAValue());
+        // StartCoroutine(UpdateAValue());
     }
 
     IEnumerator UpdateAValue()
