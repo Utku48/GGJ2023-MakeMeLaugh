@@ -8,6 +8,8 @@ TagManager:
   - ground
   - diken
   - trap
+  - x
+  - tokmakDoor
   layers:
   - Default
   - TransparentFX
