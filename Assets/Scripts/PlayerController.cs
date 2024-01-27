@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f;
     public float gravity = 14f;
     public LayerMask groundMask;
+    public bool isReversed;
 
     private CharacterController characterController;
     private Camera playerCamera;
     private float verticalRotation = 0f;
     private bool isGrounded;
     private Vector3 velocity;
+    private Vector3 moveDirection;
 
     [SerializeField] private ParticleSystem _dust;
     public static PlayerController Instance { get; private set; }
@@ -85,7 +87,11 @@ public class PlayerController : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+
+        if(!isReversed)
+            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+        else
+            moveDirection = transform.TransformDirection(new Vector3(verticalMove , 0f, horizontalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
         // Apply gravity to the velocity
