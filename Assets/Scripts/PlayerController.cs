@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + 0.1f, groundMask);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, characterController.height / 2f + .5f, groundMask);
 
         // Handle player movement
         HandleMovement();
@@ -89,9 +89,9 @@ public class PlayerController : MonoBehaviour
 
 
         if(!isReversed)
-            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f, verticalMove));
+            moveDirection = transform.TransformDirection(new Vector3(horizontalMove, 0f,verticalMove));
         else
-            moveDirection = transform.TransformDirection(new Vector3(verticalMove , 0f, horizontalMove));
+            moveDirection = transform.TransformDirection(new Vector3(-horizontalMove, 0f, -verticalMove));
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
         // Apply gravity to the velocity
