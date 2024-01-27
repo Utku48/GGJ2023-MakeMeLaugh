@@ -7,6 +7,12 @@ TagManager:
   - Wall
   - ground
   - diken
+  - trap
+  - x
+  - tokmakDoor
+  - ironDoor
+  - leftIronDoor
+  - yumruk
   layers:
   - Default
   - TransparentFX
@@ -17,8 +23,8 @@ TagManager:
   - Ground
   - postprocess
   - hand
-  - 
-  - 
+  - ca
+  - trap
   - 
   - 
   - 

@@ -5,30 +5,46 @@ using DG.Tweening;
 
 public class Door : MonoBehaviour, Interactable
 {
-    private bool isOpen=false;
+    private bool isOpen = false;
     public bool isTrapDoor;
     [SerializeField] private GameObject TrapWall;
+    [SerializeField] Insanity insanity;
+
+    [SerializeField] private AudioSource _CloseDoorCreak;
+    [SerializeField] private Vector3 trapDoorPos;
     public void interact()
     {
         Sequence mySequence = DOTween.Sequence();
         if (!isOpen)
         {
 
-            mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 1f,RotateMode.LocalAxisAdd));
-            isOpen=true;
+
+            isOpen = true;
+
+            AudioSourceManager.Instance._sounds[2].Play();
+
+
             if (isTrapDoor)
             {
-                mySequence.Append(TrapWall.transform.DOLocalMove(new Vector3(TrapWall.transform.localPosition.x, TrapWall.transform.localPosition.y, TrapWall.transform.localPosition.z-2), .5f));
+                //add
+                insanity.insanity_amount += 10;
+                mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 2f, RotateMode.LocalAxisAdd));
+                mySequence.Append(TrapWall.transform.DOLocalMove(trapDoorPos, .5f));
+            }
+            else
+            {
+                mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 3f, RotateMode.LocalAxisAdd));
             }
         }
         else
         {
 
-            mySequence.Append(transform.DOLocalRotate(new Vector3(0, -90 , 0), 1f, RotateMode.LocalAxisAdd) );
+            mySequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), .75f, RotateMode.LocalAxisAdd));
             isOpen = false;
+            AudioSourceManager.Instance._sounds[1].Play();
         }
         mySequence.Play();
-           
+
         Debug.Log("interact");
     }
 }
