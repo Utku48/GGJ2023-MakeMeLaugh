@@ -8,6 +8,7 @@ public class Door : MonoBehaviour, Interactable
     private bool isOpen = false;
     public bool isTrapDoor;
     [SerializeField] private GameObject TrapWall;
+    [SerializeField] Insanity insanity;
 
     [SerializeField] private AudioSource _CloseDoorCreak;
     [SerializeField] private Vector3 trapDoorPos;
@@ -25,6 +26,8 @@ public class Door : MonoBehaviour, Interactable
 
             if (isTrapDoor)
             {
+                //add
+                insanity.insanity_amount += 10;
                 mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 2f, RotateMode.LocalAxisAdd));
                 mySequence.Append(TrapWall.transform.DOLocalMove(trapDoorPos, .5f));
             }
