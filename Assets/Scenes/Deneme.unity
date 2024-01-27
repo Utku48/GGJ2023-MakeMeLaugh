@@ -1494,6 +1494,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725068321}
   m_Mesh: {fileID: 6416302070336371891, guid: 3af8217ab4727a348bd5f9cfdc913411, type: 3}
+--- !u!95 &821601645 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4567087949348274674, guid: 05d6990542460a84ab5a879780dd74e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 918844963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &832732045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1718,6 +1724,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2641758444034106414, guid: 05d6990542460a84ab5a879780dd74e0,
+        type: 3}
+      propertyPath: handAnimator
+      value: 
+      objectReference: {fileID: 821601645}
     - target: {fileID: 6125928324538348102, guid: 05d6990542460a84ab5a879780dd74e0,
         type: 3}
       propertyPath: m_RootOrder
