@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
         bool hasInteractable = false; // Flag to check if any interactable object is within range
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, interactionRange, interactableLayer);
