@@ -19,7 +19,7 @@ public class SupriseBox : MonoBehaviour, Interactable
         {
 
             tokmak = true;
-            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), 5f);
+            gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), 5f);
             _tokmakDoorAnim.SetBool("sallan", true);
             StartCoroutine(tokmakAnim());
             insanity.insanity_amount += 5;
