@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("kıstırgaç"))
         {
 
-            gameObject.transform.DOMove(_labBase.transform.position, 2f);
+            gameObject.transform.DOMove(_labBase.transform.position, .1f);
             Debug.Log("kıstırgaç");
             AudioSourceManager.Instance._sounds[7].Play();
         }
