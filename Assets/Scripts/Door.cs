@@ -30,6 +30,8 @@ public class Door : MonoBehaviour, Interactable
                 insanity.insanity_amount += 10;
                 mySequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), 2f, RotateMode.LocalAxisAdd));
                 mySequence.Append(TrapWall.transform.DOLocalMove(trapDoorPos, .5f));
+
+                StartCoroutine(DoorDelay());
             }
             else
             {
@@ -47,4 +49,12 @@ public class Door : MonoBehaviour, Interactable
 
         Debug.Log("interact");
     }
+
+    IEnumerator DoorDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        AudioSourceManager.Instance._sounds[8].Play();
+
+    }
+
 }

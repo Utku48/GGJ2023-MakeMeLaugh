@@ -9,7 +9,7 @@ public class SupriseBox : MonoBehaviour, Interactable
     public bool tokmak = false;
     [SerializeField] private ParticleSystem _dust;
     [SerializeField] private Animator _tokmakDoorAnim;
-
+    [SerializeField] Insanity insanity;
     [SerializeField] private GameObject _tokmakDoor;
     [SerializeField] private GameObject _ironDoor;
 
@@ -22,13 +22,14 @@ public class SupriseBox : MonoBehaviour, Interactable
             gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), 5f);
             _tokmakDoorAnim.SetBool("sallan", true);
             StartCoroutine(tokmakAnim());
-
+            insanity.insanity_amount += 5;
             AudioSourceManager.Instance._sounds[6].Play();
 
         }
 
         if (gameObject.CompareTag("x"))
         {
+            insanity.insanity_amount += 10;
             gameObject.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 3.5f);
             StartCoroutine(dustPlay());
             AudioSourceManager.Instance._sounds[6].Play();
