@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector3 _startPos;
     [SerializeField] private GameObject _labBase;
+
+
     public bool _tookKey;
 
     public static PlayerController Instance { get; private set; }
@@ -172,6 +174,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("kıstırgaç"))
         {
+
             gameObject.transform.DOMove(_labBase.transform.position, 2f);
             Debug.Log("kıstırgaç");
             AudioSourceManager.Instance._sounds[7].Play();
@@ -187,7 +190,8 @@ public class PlayerController : MonoBehaviour
         {
             if (_tookKey)
             {
-                SceneManager.LoadScene(2);
+
+                StartCoroutine(WaitForSceneLoad());
             }
         }
 
@@ -196,6 +200,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    IEnumerator WaitForSceneLoad()
+    {
+        yield return new WaitForSeconds(.25f);
+        SceneManager.LoadScene(2);
+    }
     #endregion
 
     public void Die()

@@ -611,7 +611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Oyuna ba\u015Flamak i\xE7in \"P\" tusuna bas\u0131n"
+  m_text: "Oyuna baslamak icin \"P\" tusuna bas\u0131n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c81cec343a193ae4183da384ed7c7af6, type: 2}
   m_sharedMaterial: {fileID: 1202477237959988680, guid: c81cec343a193ae4183da384ed7c7af6,
