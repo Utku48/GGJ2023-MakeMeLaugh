@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
 
     [SerializeField] private Vector3 _startPos;
+    [SerializeField] private GameObject _labBase;
+    public bool _tookKey;
 
     public static PlayerController Instance { get; private set; }
     private void Awake()
@@ -168,6 +170,28 @@ public class PlayerController : MonoBehaviour
             Debug.Log("die to trap");
             Die();
         }
+        else if (other.gameObject.CompareTag("kıstırgaç"))
+        {
+            gameObject.transform.DOMove(_labBase.transform.position, 2f);
+            Debug.Log("kıstırgaç");
+            AudioSourceManager.Instance._sounds[7].Play();
+        }
+
+        else if (other.gameObject.CompareTag("key"))
+        {
+            other.gameObject.SetActive(false);
+            _tookKey = true;
+        }
+
+        else if (other.gameObject.CompareTag("finishLine"))
+        {
+            if (_tookKey)
+            {
+                Debug.Log("FinishLine");
+            }
+        }
+
+
 
 
     }
@@ -179,6 +203,6 @@ public class PlayerController : MonoBehaviour
         DOTween.Clear(true);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-      
+
     }
 }

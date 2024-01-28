@@ -13,6 +13,9 @@ TagManager:
   - ironDoor
   - leftIronDoor
   - yumruk
+  - key
+  - "k\u0131st\u0131rga\xE7"
+  - finishLine
   layers:
   - Default
   - TransparentFX
