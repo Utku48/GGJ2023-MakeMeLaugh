@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_tookKey)
             {
-                Debug.Log("FinishLine");
+                SceneManager.LoadScene(2);
             }
         }
 

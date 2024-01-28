@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 16ae45792fa47fa4ab098ccd857f7f74, type: 2}
+  m_Texture: {fileID: 8400000, guid: 7a341df4517511f46b9f3983f34ae00c, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -445,6 +445,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4931654210916922647, guid: 5ca692b83a1a79347ba387b8ba97cf38,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 198a2249946d26c4f80339b2f7b9a1d4,
+        type: 3}
+    - target: {fileID: 4931654210916922647, guid: 5ca692b83a1a79347ba387b8ba97cf38,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 7a341df4517511f46b9f3983f34ae00c, type: 2}
     - target: {fileID: 5665623973713073539, guid: 5ca692b83a1a79347ba387b8ba97cf38,
         type: 3}
       propertyPath: m_Name
@@ -570,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1940340879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -588,7 +599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -282, y: -160}
+  m_AnchoredPosition: {x: -302, y: -161}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940340880
@@ -611,11 +622,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Oyuna ba\u015Flamak i\xE7in \"P\" tusuna bas\u0131n"
+  m_text: '
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c81cec343a193ae4183da384ed7c7af6, type: 2}
-  m_sharedMaterial: {fileID: 1202477237959988680, guid: c81cec343a193ae4183da384ed7c7af6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -639,8 +651,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.6
-  m_fontSizeBase: 36.6
+  m_fontSize: 25.16
+  m_fontSizeBase: 25.16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

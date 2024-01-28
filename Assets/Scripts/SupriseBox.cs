@@ -58,7 +58,7 @@ public class SupriseBox : MonoBehaviour, Interactable
     {
         yield return new WaitForSeconds(3f);
 
-        _dust.Play();
+        //_dust.Play();
 
     }
 
