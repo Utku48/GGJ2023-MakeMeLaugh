@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 velocity;
     private Vector3 moveDirection;
+    float interactionRange = 2f;
 
+
+    [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private GameObject interactableUi;
     [SerializeField] private Vector3 _startPos;
     [SerializeField] private GameObject _labBase;
 
@@ -90,6 +94,27 @@ public class PlayerController : MonoBehaviour
                 isHandUp = false;
             }
         }
+
+        bool hasInteractable = false; // Flag to check if any interactable object is within range
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, interactionRange, interactableLayer);
+
+        foreach (Collider col in hitColliders)
+        {
+            // Check if the interactable object has a specific script or component
+            Interactable interactableObject = col.GetComponent<Interactable>();
+
+            if (interactableObject != null)
+            {
+                // Set the flag to true if at least one interactable object is found
+                hasInteractable = true;
+                break; // No need to check further once an interactable is found
+            }
+        }
+
+        // Activate or deactivate the UI based on the flag
+        interactableUi.SetActive(hasInteractable);
+
     }
     private void TryInteract()
     {
